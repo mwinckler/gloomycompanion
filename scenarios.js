@@ -1,9 +1,10 @@
 SCENARIO_DEFINITIONS =
     [   { name: "#1 Black Barrow"
         , decks: 
-            [ "Guard"
-            , "Archer"
-            , "Living Bones" ]
+            {   {"name": "Bandit Guard", "deck_name": "Guard"}
+            ,   {"name": "Bandit Archer", "deck_name": "Archer"}
+            ,   {"name": "Living Bones", "deck_name": "Living Bones"}        
+            } 
         },
         { name: "#2 Barrow Lair"
         , decks:
