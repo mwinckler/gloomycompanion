@@ -275,19 +275,14 @@ SCENARIO_DEFINITIONS =
             ,   {"name": "Elder Drake", "deck_name": "Boss" }
             ]
         },
-        //TODO Verify in the forums
         { name: "#35 Gloomhaven Battlements A"
         , decks:
             [   {"name": "Flame Demon", "deck_name": "Flame Demon" }
             ,   {"name": "Frost Demon", "deck_name": "Frost Demon" }
             ,   {"name": "Earth Demon", "deck_name": "Earth Demon" }
             ,   {"name": "Wind Demon", "deck_name": "Wind Demon" }
-            ,   {"name": "Guard", "deck_name": "Guard" }
-            ,   {"name": "City Archer", "deck_name": "Archer" }
-            ,   {"name": "Prime Demon", "deck_name": "Boss" }
             ]
         },
-        //TODO Verify in the forums
         { name: "#36 Gloomhaven Battlements B"
         , decks:
             [   {"name": "Flame Demon", "deck_name": "Flame Demon" }
@@ -504,7 +499,7 @@ SCENARIO_DEFINITIONS =
             [   {"name": "Vermling Scout", "deck_name": "Scout" }
             ,   {"name": "Inox Guard", "deck_name": "Guard" }
             ,   {"name": "Inox Archer", "deck_name": "Archer" }
-            //,   {"name": "Flame Demon", "deck_name": "Flame Demon" }
+            ,   {"name": "Flame Demon", "deck_name": "Flame Demon" }
             ]
         },
         { name: "#64 Underwater Lagoon"
