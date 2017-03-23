@@ -1,3 +1,5 @@
+//special_rules should be treated with some kind of macro that recognises them and applies them when loading
+
 SCENARIO_DEFINITIONS =
     [   { name: "#1 Black Barrow"
         , decks:
@@ -266,6 +268,9 @@ SCENARIO_DEFINITIONS =
             ,   {"name": "Flame Demon", "deck_name": "Flame Demon" }
             ,   {"name": "Wind Demon", "deck_name": "Wind Demon" }
             ,   {"name": "Earth Demon", "deck_name": "Earth Demon" }
+            ]
+        , special_rules:
+            [ "All living corpses are two levels higher than the scenario level, up to a max of 7"
             ]
         },
         { name: "#34 Scorched Summit"
