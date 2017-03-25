@@ -290,6 +290,20 @@ div.collapse
     width:                      19%;
 }
 
+.card .attributes
+{
+    font-size:                  80%;
+    position:                   absolute;
+    right:                      3%;
+    top:                        5%;
+}
+
+.card .attributes span
+{
+    display:                    block;
+    text-align:                 right;
+}
+
 .card.front .name
 {
     font-size:                  120%;

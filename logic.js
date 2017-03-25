@@ -65,7 +65,7 @@ function create_card_back(name)
     return card;
 }
 
-function create_card_front(initiative, name, shuffle, lines)
+function create_card_front(initiative, name, shuffle, lines, monster)
 {
     var card = document.createElement("div");
     card.className = "card front down";
@@ -85,6 +85,20 @@ function create_card_front(initiative, name, shuffle, lines)
         var shuffle_img = document.createElement("img");
         shuffle_img.src = "images/shuffle.svg";
         card.appendChild(shuffle_img);
+    }
+
+    if (monster.attributes.length > 0) {
+        var attributes_div = document.createElement("div");
+        attributes_div.className = "attributes";
+
+        for (var i = 0; i < monster.attributes.length; i++) {
+            var monster_macro = MONSTER_ATTRIBUTES[monster.attributes[i].toLowerCase()] || monster.attributes[i];
+            var span = document.createElement("span");
+            span.insertAdjacentHTML("beforeend", expand_string(monster_macro));
+            attributes_div.appendChild(span);
+        }
+
+        card.appendChild(attributes_div);
     }
 
     var current_depth = 0;
@@ -147,12 +161,13 @@ function create_card_front(initiative, name, shuffle, lines)
     return card;
 }
 
-function load_deck(deck_definition)
+function load_deck(deck_definition, monster_name, monster_stats)
 {
     var deck_state = {
-        name:                   deck_definition.name,
-        draw_pile:              [],
-        discard:                []
+        name:      deck_definition.name,
+        real_name: monster_name,
+        draw_pile: [],
+        discard:   []
     }
 
     for (var i = 0; i < deck_definition.cards.length; i++)
@@ -162,7 +177,7 @@ function load_deck(deck_definition)
         var initiative = definition[1];
         var lines = definition.slice(2);
 
-        var card_front = create_card_front(initiative, deck_definition.name, shuffle, lines);
+        var card_front = create_card_front(initiative, deck_definition.name, shuffle, lines, monster_stats.monsters[monster_name].level[0].normal);
         var card_back = create_card_back(deck_definition.name);
 
         var card = {
@@ -306,17 +321,6 @@ function draw_card(deck)
     }
 }
 
-function load(card_database)
-{
-    var decks = {};
-    for (var i = 0; i < card_database.length; i++)
-    {
-        var deck = load_deck(card_database[i]);
-        decks[deck.name] = deck;
-    }
-    return decks;
-}
-
 function create_input(type, name, value, text)
 {
     var input = document.createElement("input");
@@ -381,14 +385,14 @@ function clear_list(list)
     return list;
 }
 
-function DeckList(decks)
+function DeckList(deck_names)
 {
     var decklist = {};
     decklist.ul = document.createElement("ul");
     decklist.ul.className = "selectionlist";
     decklist.checkboxes = {};
 
-    for (var deck_name in decks)
+    for (var deck_name in deck_names)
     {
         var listitem = document.createElement("li");
         var dom_dict = create_input("checkbox", "deck", deck_name, deck_name);
@@ -458,16 +462,27 @@ function ScenarioList(scenarios)
     return scenariolist;
 }
 
+function load_deck_names(deck_definitions)
+{
+    return deck_definitions.map(function(definition) {
+        return definition.name;
+    });
+}
+
 function init()
 {
-    decks = load(DECK_DEFINITONS);
+    var decks = {};
+
+    for (var i = 0; i < DECK_DEFINITIONS.length; i++) {
+        decks[DECK_DEFINITIONS[i].name] = DECK_DEFINITIONS[i];
+    }
 
     var deckspage = document.getElementById("deckspage");
     var scenariospage = document.getElementById("scenariospage");
     var applydeckbtn = document.getElementById("applydecks");
     var applyscenariobtn = document.getElementById("applyscenario");
 
-    var decklist = new DeckList(decks);
+    var decklist = new DeckList(load_deck_names(DECK_DEFINITIONS));
     var scenariolist = new ScenarioList(SCENARIO_DEFINITIONS);
 
     deckspage.insertAdjacentElement('afterbegin', decklist.ul);
@@ -482,22 +497,17 @@ function init()
                                                     deck.clean_real_name();
                                                     return deck;
                                                 } );
-        apply_deck_selection(selected_decks, true);
+        apply_deck_selection(selected_decks, monster_stats, true);
     };
     applyscenariobtn.onclick = function()
     {
         var selected_deck_names = scenariolist.get_scenario_decks();
         var selected_decks = selected_deck_names.map( function(deck_names)
                                                 {
-                                                    var deck = decks[deck_names.deck_name];
-                                                    if (deck_names.deck_name != deck_names.name)
-                                                    {
-                                                        deck.set_real_name(deck_names.name);
-                                                    }
-                                                    return deck;
+                                                    return load_deck(decks[deck_names.deck_name], deck_names.name, MONSTER_STATS);
                                                 } );
         decklist.set_selection(selected_decks.map( function(deck) { return deck.name; } ));
-        apply_deck_selection(selected_decks, false);
+        apply_deck_selection(selected_decks, MONSTER_STATS, false);
     };
 
     window.onresize = refresh_ui.bind(null, visible_decks);

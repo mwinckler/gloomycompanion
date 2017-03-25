@@ -1,6 +1,6 @@
 
 /* Macros used in card text, alphabetical order */
-MACROS =    
+MACROS =
     { "%air%":                                      "<img class='element' src='images/air.svg'>"
     , "%any%":                                      "<img class='element' src='images/any_element.svg'>"
     , "%aoe-4-with-black%":                         "<img class='aoe h2' src='images/aoe-4-with-black.svg'>"
@@ -20,6 +20,7 @@ MACROS =
     , "%disarm%":                                   "<span class='nobr'>DISARM <img class='icon' src='images/disarm.svg'></span>"
     , "%earth%":                                    "<img class='element' src='images/earth.svg'>"
     , "%fire%":                                     "<img class='element' src='images/fire.svg'>"
+    , "%flying%":                                   "<img class='element' src='images/flying.svg'>"
     , "%heal%":                                     "<span class='nobr'>Heal <img class='icon' src='images/heal.svg'></span>"
     , "%ice%":                                      "<img class='element' src='images/ice.svg'>"
     , "%immobilize%":                               "<span class='nobr'>IMMOBILIZE <img class='icon' src='images/immobilize.svg'></span>"
@@ -41,6 +42,11 @@ MACROS =
     , "%target%":                                   "<span class='nobr'>Target <img class='icon' src='images/target.svg'></span>"
     , "%use_element%":                              "<img class='element overlay' src='images/use_element.svg'>"
     , "%wound%":                                    "<span class='nobr'>WOUND <img class='icon' src='images/wound.svg'></span>"
+    };
+
+MONSTER_ATTRIBUTES =
+    { "flying": "%flying%"
+    , "shield": "%shield%"
     };
 
 function expand_macro(macro)
