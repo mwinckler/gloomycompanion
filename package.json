@@ -1,0 +1,27 @@
+{
+  "name": "gloomycompanion",
+  "version": "1.0.0",
+  "description": "This is a web-app for managing the monster ability decks in the board game [Gloomhaven](https://boardgamegeek.com/boardgame/174430/gloomhaven)",
+  "main": "index.js",
+  "dependencies": {
+    "mithril": "^1.1.1"
+  },
+  "devDependencies": {
+    "webpack": "^2.3.3"
+  },
+  "scripts": {
+    "start": "webpack src/index.js bin/app.js -d --watch",
+    "build": "webpack src/index.js bin/app.js -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johreh/gloomycompanion.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johreh/gloomycompanion/issues"
+  },
+  "homepage": "https://github.com/johreh/gloomycompanion#readme"
+}
