@@ -1,4 +1,9 @@
-var m = require("mithril")
+var m = require("mithril");
 var Tableau = require("./views/Tableau");
+var SettingsPane = require("./views/SettingsPane");
 
-m.mount(document.body, Tableau);
+m.route(document.body, "/config/scenario", {
+    "/": Tableau,
+    "/config": SettingsPane,
+    "/config/:tab": SettingsPane
+});
