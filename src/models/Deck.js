@@ -1,26 +1,38 @@
+var Card = require("./Card");
+
 function Deck(deckDefinition) {
-    return {
-        name: deckDefinition.name,
-        cards: deckDefinition.cards,
-        currentIndex: 0,
+    var currentIndex = 0;
+    var name = deckDefinition.name;
+    var cards = deckDefinition.cards.map(cardDefinition => new Card(cardDefinition));
 
-        shuffle: function(includeDiscards = true) {
-            for (var i = includeDiscards ? 0 : currentIndex; i < this.cards.length; i++)
-            {
-                var switchIndex = Math.floor(Math.random() * this.cards.length);
-                var tmp = this.cards[switchIndex];
-                this.cards[switchIndex] = this.cards[i];
-                this.cards[i] = tmp;
-            }
-        },
-
-        draw: function() {
-            if (currentIndex >= cards.length) {
-                this.shuffle();
-            }
-
-            return cards[currentIndex++];
+    function shuffle(includeDiscards = true) {
+        for (var i = includeDiscards ? 0 : currentIndex; i < cards.length; i++)
+        {
+            var switchIndex = Math.floor(Math.random() * cards.length);
+            var tmp = cards[switchIndex];
+            cards[switchIndex] = cards[i];
+            cards[i] = tmp;
         }
+
+        currentIndex = 0;
+    };
+
+    function draw() {
+        if (currentIndex >= cards.length) {
+            shuffle();
+        }
+
+        return cards[currentIndex++];
+    };
+
+    this.name = name;
+    this.cards = cards;
+
+    this.shuffle = shuffle;
+    this.draw = draw;
+
+    this.currentCard = function() {
+        return cards[currentIndex - 1];
     };
 }
 

@@ -1,3 +1,4 @@
+var _ = require("underscore");
 var Deck = require("./Deck");
 
 var monsterAbilities = [
@@ -351,8 +352,32 @@ var monsterAbilities = [
     }
 ];
 
+var state = {
+    selectedDeckNames: []
+};
+
 module.exports = {
     monsterAbilityDecks: monsterAbilities.map(function(deckDefinition) {
         return new Deck(deckDefinition);
-    })
+    }),
+
+    getSelectedDecks: function() {
+        return _.filter(this.monsterAbilityDecks, deck => _.contains(state.selectedDeckNames, deck.name));
+    },
+
+    selectDeck: function(isSelected, deck) {
+        if (isSelected) {
+            if (!_.contains(state.selectedDeckNames, deck.name)) {
+                state.selectedDeckNames.push(deck.name);
+            }
+        }
+        else
+        {
+            state.selectedDeckNames = _.without(state.selectedDeckNames, deck.name);
+        }
+    },
+
+    setSelectedAbilityDecks: function(selectedDeckNames) {
+        state.selectedDeckNames = selectedDeckNames;
+    }
 };

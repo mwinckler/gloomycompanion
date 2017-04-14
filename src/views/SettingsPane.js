@@ -7,10 +7,10 @@ function getClass(tabName) {
 }
 
 module.exports = {
-    view: function() {
+    view: function(vnode) {
         var currentTab = null;
 
-        switch (m.route.param("tab")) {
+        switch (vnode.attrs.tab) {
             case "decks":
                 currentTab = m(Decks);
                 break;
@@ -27,7 +27,7 @@ module.exports = {
                 ),
                 m(".tabcontainer", currentTab)
             ),
-            m("#cancelarea")
+            m("#cancelarea", { onclick: () => m.route.set("/") })
         );
     }
 }
