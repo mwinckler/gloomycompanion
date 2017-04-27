@@ -14,7 +14,7 @@ module.exports = {
             case "decks":
                 currentTab = m(Decks);
                 break;
-            case "scenario":
+            default:
                 currentTab = m(Scenarios);
                 break;
         }
