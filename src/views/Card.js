@@ -9,7 +9,7 @@ module.exports = {
         if (card !== undefined) {
             elements.push(
                 m(".card.ability.front.up.discard",
-                    m("span.name", vnode.monsterName),
+                    m("span.name", vnode.attrs.monsterName),
                     m("span.initiative", card.initiative)
                 )
             );

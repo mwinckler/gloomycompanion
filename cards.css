@@ -2,13 +2,13 @@
 @font-face
 {
     font-family:                Philosopher;
-    src:                        url(Philosopher-Bold.ttf);
+    src:                        url(fonts/Philosopher-Bold.ttf);
 }
 
 @font-face
 {
     font-family:                PirataOne;
-    src:                        url(PirataOne-Gloomhaven.ttf);
+    src:                        url(fonts/PirataOne-Gloomhaven.ttf);
 }
 
 @media only screen and (min-height: 500px) and (orientation: portrait) {

@@ -1,4 +1,4 @@
-// cardDefinition expected format:
+// cardDefinition expected format (from DeckList.js):
 // [ (bool) shuffle, (int) initiative, (string) ability1, ... (string) abilityN ]
 function Card(cardDefinition) {
     this.triggersShuffle = cardDefinition[0];

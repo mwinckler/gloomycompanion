@@ -17,19 +17,17 @@ function Deck(deckDefinition) {
         currentIndex = 0;
     };
 
-    function draw() {
+    this.name = name;
+    this.cards = cards;
+    this.shuffle = shuffle;
+
+    this.draw = function() {
         if (currentIndex >= cards.length) {
             shuffle();
         }
 
         return cards[currentIndex++];
     };
-
-    this.name = name;
-    this.cards = cards;
-
-    this.shuffle = shuffle;
-    this.draw = draw;
 
     this.currentCard = function() {
         return cards[currentIndex - 1];

@@ -18,3 +18,8 @@ If you want to add new cards, you need to update `cards.js`. The decks has the f
 The value in the first column is `true` if the deck shall be reshuffled after that card, `false` otherwise. The second colum is card initiative value. The following values is the card text, one row per column.
 
 A single `*` means a top-level action. Double asterisk `**` means it modifies the previous action. Commonly used text snippets can be expanded using macros. E.g. `%move%` expands to the text _Move_ followed by the move icon, `%immobilize%` expands to _IMMOBILIZE_ followed by the immobilization icon. The list of available macros can be seen in `macros.js`.
+
+## Setting up a development environment
+
+1. Install NPM by [downloading and installing Node.js](https://nodejs.org/).
+2. From the root directory, run the bundler: `npm start`. The application should be built and you can view it by opening `index.html` in a browser.
